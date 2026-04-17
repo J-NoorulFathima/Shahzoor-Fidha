@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Baby Boy 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Amiri&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: #0b1d3a;
+}
+
+/* PREMIUM ANIMATED BACKGROUND */
+.bg-gradient {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #0b1d3a, #1e3c72, #2a5298, #6ec1ff);
+    background-size: 300% 300%;
+    animation: gradientFlow 12s ease infinite;
+    z-index: 0;
+}
+
+/* LIGHT RAYS */
+.light-rays {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.25), transparent 60%);
+    z-index: 1;
+    animation: pulseLight 6s ease-in-out infinite alternate;
+}
+
+/* BOKEH EFFECT */
+.bokeh {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.15) 2px, transparent 2px);
+    background-size: 60px 60px;
+    animation: moveBokeh 20s linear infinite;
+    z-index: 1;
+}
+
+/* ENTRY SCREEN */
+.intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1a3c6e, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    color: white;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.scene {
+    opacity: 0;
+    transition: 2s ease;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-heart {
+    font-size: 120px;
+    margin-top: 60px;
+    animation: heartPulse 2s infinite ease-in-out, zoomIn 3s ease forwards;
+    text-shadow: 0 0 30px rgba(110,193,255,0.9), 0 0 60px rgba(110,193,255,0.6);
+}
+
+@keyframes heartPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.text-block {
+    color: white;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 2s forwards;
+}
+
+.text-block:nth-child(2) { animation-delay: 2s; }
+.text-block:nth-child(3) { animation-delay: 4s; }
+.text-block:nth-child(4) { animation-delay: 6s; }
+
+.arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    direction: rtl;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255,215,0,0.6);
+}
+
+h1 {
+    color: #6ec1ff;
+    font-size: 2.8rem;
+    text-shadow: 0 0 25px rgba(110,193,255,0.9);
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ANIMATIONS */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseLight {
+    from { opacity: 0.4; }
+    to { opacity: 0.8; }
+}
+
+@keyframes moveBokeh {
+    from { background-position: 0 0; }
+    to { background-position: 200px 200px; }
+}
+
+@keyframes zoomIn {
+    to { transform: scale(1); }
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="light-rays"></div>
+<div class="bokeh"></div>
+
+<div class="intro" onclick="startExperience()">
+    Tap to Open 😍
+</div>
+
+<canvas id="particles"></canvas>
+
+<div class="scene" id="scene">
+
+    <div class="hero-heart">💙</div>
+
+    <div class="text-block arabic">الحمد لله</div>
+
+    <div class="text-block">
+        <h1>It’s a Boy 💙</h1>
+    </div>
+
+    <div class="text-block">
+        With immense joy & gratitude,<br>
+        we announce the arrival of our bundle of joy,<br>
+        our sweet baby boy.<br><br>
+        <strong>Shahzoor & Fidha</strong>
+    </div>
+
+    <div class="text-block arabic">
+        اللَّهُمَّ احْفَظْ طِفْلَنَا، وَاجْعَلْهُ مِنْ أَهْلِ الْإِيمَانِ وَالتَّقْوَى،
+        وَارْزُقْهُ سَعَادَةً دَائِمَةً وَعُمْرًا مُبَارَكًا
+    </div>
+
+    <div class="text-block">
+        O Allah, protect our baby boy, make him among the people of faith and piety,
+        and bless him with everlasting happiness and a life full of blessings.
+    </div>
+
+</div>
+
+<script>
+function startExperience() {
+    document.querySelector('.intro').style.opacity = "0";
+    setTimeout(() => {
+        document.querySelector('.intro').style.display = "none";
+        document.getElementById('scene').style.opacity = "1";
+    }, 1000);
+}
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        d: Math.random() * 1.5
+    });
+}
+
+function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
+    ctx.beginPath();
+
+    particles.forEach(p => {
+        ctx.moveTo(p.x, p.y);
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+    });
+
+    ctx.fill();
+    updateParticles();
+}
+
+function updateParticles() {
+    particles.forEach(p => {
+        p.y += p.d;
+        if (p.y > canvas.height) {
+            p.y = 0;
+            p.x = Math.random() * canvas.width;
+        }
+    });
+}
+
+setInterval(drawParticles, 30);
+</script>
+
+</body>
+</html>
